@@ -23,15 +23,25 @@ public class AppStreaming {
                     midias.add(novoFilme);
                     break;
                 case 2:
-                    System.out.println("Qual o título da série?");   
+                    System.out.println("Qual o título da série?");
                     serie = sc.nextLine();
                     System.out.println("Quantas temporadas você quer adicionar?");
                     temporadas = sc.nextInt();
                     Midia serie = new Serie(serie, temporadas);
-                    for (String temp : temporadas) {
-                        System.out.println("Você deseja adicionar um episódio? (digite s ou n)");
-                        resposta = sc.nextLine();
-                        if (resposta == s)
+
+
+                    
+                    System.out.println("Você deseja adicionar um episódio? (digite s ou n)");
+                    resposta = sc.nextLine();
+                    if (resposta == "s") {
+                        for (String temporada : temporadas) {
+                            for (String episodio : temp) {
+                                System.out.println("Qual o nome deste episódio?");
+                                episodioNome = sc.nextLine();
+                            }
+                        }
+                    }
+                    
 
 
                     }
