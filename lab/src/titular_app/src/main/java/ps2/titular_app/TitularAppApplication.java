@@ -23,7 +23,7 @@ public class TitularAppApplication implements CommandLineRunner {
 		t = new Titular();
 		String nome = input("Nome do novo titular: ");
 		t.setNome(nome);
-		String cpf = input("Nome do novo titular: ");
+		String cpf = input("CPF do novo titular: ");
 		t.setCpf(cpf);
 		titularrepo.save(t);
 		System.out.println("Titular criado com o id " + t.getId());
@@ -47,16 +47,17 @@ public class TitularAppApplication implements CommandLineRunner {
 		titularrepo.save(t);
 	}
 
-	public apagarTitular() {
-		
-	}
+    public void apagarTitular(Titular t) {
+        titularrepo.delete(t);
+        print("Titular " + t.getId() + " apagado com sucesso.");
+    }
 
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("# GERENCIADOR DE TITULARES!");
 		boolean sair = false;
 		String menu = "\n(1) Mostrar todos os titulares";
-		menu += "\n(2) Buscar um titular específico pelo número"; /* TODO */
+		menu += "\n(2) Buscar um titular específico pelo número";
 		menu += "\n(3) Criar um novo titular";
 		menu += "\n(4) Alterar os dados do titular";
 		menu += "\n(5) Apagar um titular";
@@ -93,16 +94,16 @@ public class TitularAppApplication implements CommandLineRunner {
 						print("Titular não encontrado");
 					}
 					break;
-				case "5":
-					String idDel = input("Digite o id do Titular para alterar seus dados: ");
-					Optional<Titular> delTitular = buscarId(Long.parseLong(idDel));
-					if (delTitular.isPresent()) {
-						print(delTitular.get().toString());
-						apagarTitular(delTitular.get());
-					} else {
-						print("Titular não encontrado");
-					}
-					break;
+                case "5":
+                    String idDel = input("Digite o id do Titular que deseja apagar: ");
+                    Optional<Titular> delTitular = buscarId(Long.parseLong(idDel));
+                    if (delTitular.isPresent()) {
+                        print("Apagando o seguinte titular: " + delTitular.get().toString());
+                        apagarTitular(delTitular.get());
+                    } else {
+                        print("Titular não encontrado");
+                    }
+                    break;
 				case "0":
 					sair = true;
 					break;
