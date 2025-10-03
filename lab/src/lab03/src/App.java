@@ -62,6 +62,15 @@ public class App {
                     precoMax = sc.nextLine();
                     CriterioPrecoMaximo cpm = new CriterioPrecoMaximo();
                     break;
+                case "5":
+                    System.out.print("Preço minimo: ");
+                    String precoMin = sc.nextLine();
+                    System.out.println("\nResultado da pesquisa: ");
+                    List<Produto> resultado4 = pesquisar(produtos, precoMin, new CriterioPrecoMinimo());
+                    for (Produto p : resultado4) {
+                        System.out.println(p);
+                    }
+                    break;
                 default:
                     System.out.println("Opção inválida");
                     break;
